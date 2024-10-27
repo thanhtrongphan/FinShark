@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    // Represents a comment entity with properties such as Id, Title, Content, CreatedOn, StockID, and Stock.
+    // Create table comments
+    // int? Stock? is can be null
     public class Comment
     {
         public int Id { get; set; }

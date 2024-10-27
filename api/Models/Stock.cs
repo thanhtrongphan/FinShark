@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
+    // Create table stocks
+    // String.empty is used to ensure that the properties are not null when a Stock object is created
+    // Column attribute is used to specify the data type and size for table columns
     public class Stock
     {
         public int Id { get; set; }
