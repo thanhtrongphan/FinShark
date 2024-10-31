@@ -1,0 +1,22 @@
+
+**Code:**
+1. `dotnet watch run` : runs the project.
+2. `dotnet ef migrations add init` : starts a database migration in the project.
+   - 2.1 `dotnet ef database update` : applies migrations to the database in SQL Server.
+
+**Structure:**
+1. **Program.cs** : controls routing to controllers and views, and configures settings for SQL Server.
+   - 1.1 `builder.Services.AddControllers();` : lets the project use the "Controllers" folder for controllers.
+   - 1.2 `builder.Services.AddDbContext<ApplicationDBContext>` : configures the project to use the database settings in the "Data" folder.
+   - 1.3 `app.MapControllers();` : configures the project to use the MVC pattern and HTTP.
+
+2. **Models.cs** : a folder that contains the structure (columns) for tables.
+   
+3. **appsettings.json** : configures the database connection.
+   - 3.1 `DefaultConnection` : sets the connection string for the database.
+
+4. **Data/ApplicationDBContext** : manages interactions between the application and the database.
+   - 4.1 `DbSet` : modifies data in the database by model and can be used as a list.
+
+5. **Controllers** : contains API controllers for HTTP requests from the frontend.
+   - 5.1 `ApplicationDBContext _context` : defines where to access the database.
