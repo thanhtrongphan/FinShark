@@ -10,7 +10,8 @@ namespace api.Interfraces
     public interface ICommentRepository
     {
         public Task<List<Comment>> GetComments();
-        public Task<Comment> GetCommentID(int id);
+        public Task<Comment?> GetCommentID(int id);
         public Task<Comment> CreateComment(Comment comment);
+        public Task<Comment?> UpdateComment(int id, Comment comment);
     }
 }
