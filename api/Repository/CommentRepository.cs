@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using api.Data;
 using api.Interfraces;
 using api.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Repository
@@ -16,9 +17,23 @@ namespace api.Repository
         {
             _context = context;
         }
+
+        
+
         public async Task<List<Comment>> GetComments()
         {
             return  await _context.Comments.ToListAsync();         
+        }
+        public  async Task<Comment?> GetCommentID(int id)
+        {
+            return await _context.Comments.FindAsync(id);
+        }
+
+        public async Task<Comment> CreateComment(Comment comment)
+        {
+            await _context.Comments.AddAsync(comment);
+            await _context.SaveChangesAsync();
+            return comment;
         }
     }
 }

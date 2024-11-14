@@ -14,5 +14,6 @@ namespace api.Interfraces
         public Task<Stock?> AddStock(Stock stockModel);
         public Task<Stock?> UpdateStock(int id, Stock stockModel);
         public Task<Stock?> DeleteStock(int id);
+        public Task<bool> StockExists(int id);
     }
 }
