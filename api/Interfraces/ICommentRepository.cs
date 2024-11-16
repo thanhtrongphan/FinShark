@@ -13,5 +13,6 @@ namespace api.Interfraces
         public Task<Comment?> GetCommentID(int id);
         public Task<Comment> CreateComment(Comment comment);
         public Task<Comment?> UpdateComment(int id, Comment comment);
+        public Task<Comment?> DeleteComment(int id);
     }
 }

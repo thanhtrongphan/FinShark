@@ -4671,11 +4671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Learning\\NetCore\\ProjectLearn\\api\\api.csproj",
+      "projectUniqueName": "D:\\Learning\\NetCore\\ProjectLearn\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "d:\\Learning\\NetCore\\ProjectLearn\\api\\api.csproj",
+      "projectPath": "D:\\Learning\\NetCore\\ProjectLearn\\api\\api.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "d:\\Learning\\NetCore\\ProjectLearn\\api\\obj\\",
+      "outputPath": "D:\\Learning\\NetCore\\ProjectLearn\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -4759,7 +4759,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
