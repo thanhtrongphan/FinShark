@@ -28,6 +28,10 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetStocks()
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stocks = await _stockRepository.GetStocks();
             var stockDtos = stocks.Select(x => x.ToStockDto()).ToList();
             return Ok(stockDtos);
@@ -35,6 +39,10 @@ namespace api.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetStockID([FromRoute]int id)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stock = await _stockRepository.GetStock(id);
             if (stock == null)
             {
@@ -45,6 +53,10 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateStock([FromBody] CreateStockRequest stockDto)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stockModel = stockDto.ToStockToCreateDTO();
             await _stockRepository.AddStock(stockModel);
             return CreatedAtAction(nameof(GetStockID), new {id = stockModel.Id}, stockModel.ToStockDto());
@@ -54,6 +66,10 @@ namespace api.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> UpdateStock([FromRoute]int id, [FromBody] UpdateStockRequest stockDto)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stock = await _stockRepository.GetStock(id);
             if (stock == null)
             {
@@ -67,6 +83,10 @@ namespace api.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteStock([FromRoute]int id)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stock = await _context.Stocks.FindAsync(id);
             if (stock == null)
             {

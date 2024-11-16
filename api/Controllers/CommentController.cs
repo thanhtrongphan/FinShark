@@ -24,6 +24,10 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetComments()
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var comments = await _commentRepository.GetComments();
             var commentDto = comments.Select(c => c.toCommentDto());
             return Ok(comments);
@@ -31,6 +35,10 @@ namespace api.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetCommentID(int id)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var comment = await _commentRepository.GetCommentID(id);
             if (comment == null)
             {
@@ -41,6 +49,10 @@ namespace api.Controllers
         [HttpPost("{stockId:int}")]
         public async Task<IActionResult> CreateComment([FromRoute]int stockId, CreateCommentDto createCommentDto)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if(! await _stockRepository.StockExists(stockId))
             {
                 return BadRequest("Stock does not exist");
@@ -53,6 +65,10 @@ namespace api.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> UpdateComment([FromRoute] int id, UpdateCommentRequest updateCommentDto)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var comment = await _commentRepository.UpdateComment(id, updateCommentDto.ToCommentFromUpdate());
             if (comment == null)
             {
@@ -64,6 +80,10 @@ namespace api.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteComment([FromRoute] int id)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var comment = await _commentRepository.DeleteComment(id);
             if (comment == null)
             {
