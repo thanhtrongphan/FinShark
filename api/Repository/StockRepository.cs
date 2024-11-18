@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos.Stock;
+using api.Helpers;
 using api.Interfraces;
 using api.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -43,9 +44,25 @@ namespace api.Repository
             return await _context.Stocks.Include(c => c.Comments).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<Stock>> GetStocks()
+        public async Task<List<Stock>> GetStocks(QueryObject query)
         {
-            return await _context.Stocks.Include(c => c.Comments).ToListAsync();
+            var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
+            if (!string.IsNullOrEmpty(query.Symbol))
+            {
+                stocks = stocks.Where(x => x.Symbol == query.Symbol);
+            }
+            if (!string.IsNullOrEmpty(query.CompanyName))
+            {
+                stocks = stocks.Where(x => x.CompanyName == query.CompanyName);
+            }
+            if(!string.IsNullOrEmpty(query.SortBy))
+            {
+                if(query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
+                {
+                    stocks = query.IsDescending ? stocks.OrderByDescending(x => x.Symbol) : stocks.OrderBy(x => x.Symbol);
+                }
+            }
+            return await stocks.ToListAsync();
         }
 
         public Task<bool> StockExists(int id)
