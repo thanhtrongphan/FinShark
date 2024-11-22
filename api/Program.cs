@@ -25,37 +25,39 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
 
-// add identity service
-builder.Services.AddIdentity<AppUser, IdentityRole>(options => {
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+{
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
-    options.Password.RequireNonAlphanumeric = true;
     options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric = true;
     options.Password.RequiredLength = 12;
-}).AddEntityFrameworkStores<ApplicationDBContext>();
+})
+.AddEntityFrameworkStores<ApplicationDBContext>();
 
-//
-builder.Services.AddAuthentication(options => {
+builder.Services.AddAuthentication(options =>
+{
     options.DefaultAuthenticateScheme =
     options.DefaultChallengeScheme =
-    options.DefaultForbidScheme = 
+    options.DefaultForbidScheme =
     options.DefaultScheme =
     options.DefaultSignInScheme =
     options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options => {
+}).AddJwtBearer(options =>
+{
+    var jwtSettings = builder.Configuration.GetSection("JWT");
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["JWT:Issuer"],
+        ValidIssuer = jwtSettings["Issuer"],
         ValidateAudience = true,
-        ValidAudience = builder.Configuration["JWT:Audience"],
+        ValidAudience = jwtSettings["Audience"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
-            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
+            System.Text.Encoding.UTF8.GetBytes(jwtSettings["SigningKey"])
         )
     };
 });
-
 
 // add repository to use in controller
 builder.Services.AddScoped<IStockRepository, StockRepository>();
@@ -72,8 +74,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 //
-app.UseAuthorization(); 
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
