@@ -7,6 +7,7 @@ using api.Models;
 
 namespace api.Interfraces
 {
+    // Interface for Comment Repository
     public interface ICommentRepository
     {
         public Task<List<Comment>> GetComments();

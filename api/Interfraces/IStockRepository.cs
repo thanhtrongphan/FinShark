@@ -8,6 +8,7 @@ using api.Models;
 
 namespace api.Interfraces
 {
+    // Interface for Stock Repository
     public interface IStockRepository
     {
         public Task<List<Stock>> GetStocks(QueryObject query);

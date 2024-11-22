@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Repository
 {
+    // manage stock controller
     public class StockRepository : IStockRepository
     {
         private readonly ApplicationDBContext _context;

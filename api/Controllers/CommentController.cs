@@ -15,6 +15,7 @@ namespace api.Controllers
     [ApiController]
     public class CommentController : ControllerBase
     {
+        // connect to the repository
         private readonly ICommentRepository _commentRepository;
         private readonly IStockRepository _stockRepository;
         public CommentController(ICommentRepository commentRepository, IStockRepository stockRepository)

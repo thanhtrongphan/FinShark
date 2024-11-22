@@ -7,6 +7,7 @@ using api.Models;
 
 namespace api.Mappers
 {
+    // This class is used to map the Stock model to the StockDto and vice versa
     public static class StockMappers
     {
         public static StockDto ToStockDto(this Stock stock)

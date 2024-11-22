@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Helpers
 {
+    // Query Object for Stock Repository, used for filtering and sorting
     public class QueryObject
     {
         public string? Symbol { get; set; } = null;

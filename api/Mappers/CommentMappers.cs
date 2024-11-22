@@ -7,6 +7,7 @@ using api.Models;
 
 namespace api.Mappers
 {
+    // This class is used to map the Comment model to the CommentDto and vice versa
     public static class CommentMappers
     {
         public static CommentDto toCommentDto(this Comment comment)

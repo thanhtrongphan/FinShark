@@ -6,6 +6,7 @@ using api.Models;
 
 namespace api.Interfraces
 {
+    // Interface for Token Service
     public interface ITokenService
     {
         string CreateToken(AppUser user);

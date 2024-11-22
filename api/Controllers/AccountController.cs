@@ -15,6 +15,7 @@ namespace api.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        // setting up the user manager, token service and sign in manager
         private readonly UserManager<AppUser> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<AppUser> _signInManager;
