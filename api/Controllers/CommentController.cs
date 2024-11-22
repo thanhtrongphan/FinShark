@@ -6,6 +6,7 @@ using api.Dtos.Comment;
 using api.Interfraces;
 using api.Mappers;
 using api.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -22,6 +23,7 @@ namespace api.Controllers
             _stockRepository = stockRepository;
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetComments()
         {
             if(!ModelState.IsValid)

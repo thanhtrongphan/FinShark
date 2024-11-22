@@ -17,10 +17,12 @@ namespace api.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly ITokenService _tokenService;
-        public AccountController(UserManager<AppUser> userManager, ITokenService tokenService)
+        private readonly SignInManager<AppUser> _signInManager;
+        public AccountController(UserManager<AppUser> userManager, ITokenService tokenService, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _tokenService = tokenService;
+            _signInManager = signInManager;
         }
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
@@ -62,6 +64,31 @@ namespace api.Controllers
             {
                 return StatusCode(500, "Internal server error");
             }
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginUserDto loginUserDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var user = await _userManager.FindByEmailAsync(loginUserDto.Email);
+            if (user == null)
+            {
+                return Unauthorized("Invalid Email");
+            }
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, loginUserDto.Password, false);
+            if (!result.Succeeded)
+            {
+                return Unauthorized("Invalid Email or Password");
+            }
+            return Ok(new NewUserDto
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                Token = _tokenService.CreateToken(user)
+            });
         }
     }
 }
