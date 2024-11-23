@@ -9,6 +9,7 @@ namespace api.Models
     // Create table stocks
     // String.empty is used to ensure that the properties are not null when a Stock object is created
     // Column attribute is used to specify the data type and size for table columns
+    [Table("stocks")]
     public class Stock
     {
         public int Id { get; set; }
@@ -29,5 +30,6 @@ namespace api.Models
         public long MarketCap { get; set; }
         
         public List<Comment> Comments { get; set; } = new List<Comment>();
+        public List<Portfolio> Portfolios { get; set; } = new List<Portfolio>();
     }
 }
