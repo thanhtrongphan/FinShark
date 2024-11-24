@@ -45,6 +45,11 @@ namespace api.Repository
             return await _context.Stocks.Include(c => c.Comments).FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public Task<Stock?> GetStockBySymbol(string symbol)
+        {
+            return _context.Stocks.FirstOrDefaultAsync(x => x.Symbol == symbol);
+        }
+
         public async Task<List<Stock>> GetStocks(QueryObject query)
         {
             var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();

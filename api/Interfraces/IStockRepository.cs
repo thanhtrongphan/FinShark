@@ -13,6 +13,7 @@ namespace api.Interfraces
     {
         public Task<List<Stock>> GetStocks(QueryObject query);
         public Task<Stock?> GetStock(int id);
+        public Task<Stock?> GetStockBySymbol(string symbol);
         public Task<Stock?> AddStock(Stock stockModel);
         public Task<Stock?> UpdateStock(int id, Stock stockModel);
         public Task<Stock?> DeleteStock(int id);
