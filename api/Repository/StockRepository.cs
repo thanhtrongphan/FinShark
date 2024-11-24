@@ -42,7 +42,9 @@ namespace api.Repository
 
         public async Task<Stock?> GetStock(int id)
         {
-            return await _context.Stocks.Include(c => c.Comments).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Stocks.Include(c => c.Comments)
+            .ThenInclude(c => c.AppUser)
+            .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<Stock?> GetStockBySymbol(string symbol)
@@ -52,7 +54,7 @@ namespace api.Repository
 
         public async Task<List<Stock>> GetStocks(QueryObject query)
         {
-            var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
+            var stocks = _context.Stocks.Include(c => c.Comments).ThenInclude(c => c.AppUser).AsQueryable();
             if (!string.IsNullOrEmpty(query.Symbol))
             {
                 stocks = stocks.Where(x => x.Symbol == query.Symbol);

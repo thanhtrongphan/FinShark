@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241123112013_Portfolio_manytomany")]
-    partial class Portfolio_manytomany
+    [Migration("20241124021054_Again")]
+    partial class Again
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "467f093c-1713-4437-942b-0abbb7544e8a",
+                            Id = "b50c75d8-2015-4a38-9093-e95ac9bfe284",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "06c7975c-790f-4db8-82e0-a2d14bb5e8d7",
+                            Id = "ad6f7a2f-ec46-4f50-90d7-89698859585f",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -245,6 +245,10 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -260,6 +264,8 @@ namespace api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("StockID");
 
@@ -368,9 +374,17 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Comment", b =>
                 {
+                    b.HasOne("api.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("api.Models.Stock", "Stock")
                         .WithMany("Comments")
                         .HasForeignKey("StockID");
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("Stock");
                 });

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace api.Migrations
 {
     /// <inheritdoc />
-    public partial class Portfolio_manytomany : Migration
+    public partial class Again : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -185,11 +185,18 @@ namespace api.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StockID = table.Column<int>(type: "int", nullable: true)
+                    StockID = table.Column<int>(type: "int", nullable: true),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_comments_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_comments_stocks_StockID",
                         column: x => x.StockID,
@@ -226,8 +233,8 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "06c7975c-790f-4db8-82e0-a2d14bb5e8d7", null, "User", "USER" },
-                    { "467f093c-1713-4437-942b-0abbb7544e8a", null, "Admin", "ADMIN" }
+                    { "ad6f7a2f-ec46-4f50-90d7-89698859585f", null, "User", "USER" },
+                    { "b50c75d8-2015-4a38-9093-e95ac9bfe284", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -268,6 +275,11 @@ namespace api.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_comments_AppUserId",
+                table: "comments",
+                column: "AppUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_comments_StockID",

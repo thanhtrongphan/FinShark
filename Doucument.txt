@@ -3,6 +3,7 @@
 1. `dotnet watch run` : runs the project.
 2. `dotnet ef migrations add init` : starts a database migration in the project.
    - 2.1 `dotnet ef database update` : applies migrations to the database in SQL Server.
+3. dotnet new webapi -o api
 
 **Structure:**
 1. **Program.cs** : controls routing to controllers and views, and configures settings for SQL Server.
