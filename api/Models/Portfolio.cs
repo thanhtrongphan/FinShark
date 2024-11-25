@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
+    // sub table connect between user and stock
+    // 1 portfolio belong to 1 user and 1 stock
     [Table("portfolios")]
     public class Portfolio
     {

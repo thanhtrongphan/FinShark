@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Repository
 {
+    // manage the portfolio (sub table of stock and user)
     public class PortfolioRepository : IPortfolioRepository
     {
         private readonly ApplicationDBContext _context;

@@ -10,6 +10,7 @@ namespace api.Models
     
     public class AppUser : IdentityUser
     {
+        // 1 user have many portfolios
         public List<Portfolio> Portfolios { get; set; } = new List<Portfolio>();
     }
 }

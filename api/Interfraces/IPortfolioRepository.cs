@@ -6,6 +6,7 @@ using api.Models;
 
 namespace api.Interfraces
 {
+    // interface for PortfolioRepository
     public interface IPortfolioRepository
     {
         public Task<List<Stock>> GetUserPortfolios(AppUser user);

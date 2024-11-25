@@ -28,8 +28,9 @@ namespace api.Models
         public string Industry { get; set; } = String.Empty; 
         
         public long MarketCap { get; set; }
-        
+        // 1 stock have many comments
         public List<Comment> Comments { get; set; } = new List<Comment>();
+        // 1 stock have many portfolios
         public List<Portfolio> Portfolios { get; set; } = new List<Portfolio>();
     }
 }

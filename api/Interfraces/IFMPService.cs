@@ -6,6 +6,7 @@ using api.Models;
 
 namespace api.Interfraces
 {
+    // interface for FMPService
     public interface IFMPService
     {
         Task<Stock> FindStockBySymbol(string symbol);

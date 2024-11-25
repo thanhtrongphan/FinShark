@@ -16,12 +16,14 @@ namespace api.Data
         {
             
         }
+        // Define the tables in the database
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Portfolio> Portfolios { get; set; }
         // Seed the database with roles
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // setting up the relationship between the tables
             base.OnModelCreating(builder);
             builder.Entity<Portfolio>().HasKey(p => new { p.AppUserID, p.StockID });
 
@@ -35,7 +37,7 @@ namespace api.Data
             .WithMany(p => p.Portfolios)
             .HasForeignKey(p => p.StockID);
 
-
+            // setting role user and admin
             List<IdentityRole> roles = new List<IdentityRole>
             {
                 new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },

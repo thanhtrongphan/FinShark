@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 
 namespace api.Service
 {
+    // get stock from FMP API
     public class FMPService : IFMPService
     {
         private readonly HttpClient _httpClient;
