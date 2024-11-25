@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Comment;
 using api.Extensions;
+using api.Helpers;
 using api.Interfraces;
 using api.Mappers;
 using api.Models;
@@ -33,13 +34,13 @@ namespace api.Controllers
         }
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetComments()
+        public async Task<IActionResult> GetComments([FromQuery]CommentQueryObject queryObject)
         {
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var comments = await _commentRepository.GetComments();
+            var comments = await _commentRepository.GetComments(queryObject);
             var commentDto = comments.Select(c => c.toCommentDto());
             return Ok(comments);
         }

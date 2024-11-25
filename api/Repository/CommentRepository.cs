@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Helpers;
 using api.Interfraces;
 using api.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -21,9 +22,18 @@ namespace api.Repository
 
         
 
-        public async Task<List<Comment>> GetComments()
+        public async Task<List<Comment>> GetComments(CommentQueryObject queryObject)
         {
-            return  await _context.Comments.Include(c => c.AppUser).ToListAsync();         
+            var comments = _context.Comments.Include(c => c.AppUser).AsQueryable();
+            if(queryObject.symbol != null)
+            {
+                comments = comments.Where(c => c.Stock.Symbol.Contains(queryObject.symbol));
+            }
+            if (queryObject.isDescending == true)
+            {
+                comments = comments.OrderByDescending(c =>c.CreatedOn);
+            }
+            return await comments.ToListAsync();
         }
         public  async Task<Comment?> GetCommentID(int id)
         {

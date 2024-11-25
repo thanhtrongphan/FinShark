@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace api.Extensions
 {
+    // get the username from the claims
     public static class ClaimsExtensions
     {
         public static string GetUserName(this ClaimsPrincipal user)

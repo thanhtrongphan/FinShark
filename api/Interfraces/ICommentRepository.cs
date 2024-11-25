@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Comment;
+using api.Helpers;
 using api.Models;
 
 namespace api.Interfraces
@@ -10,7 +11,7 @@ namespace api.Interfraces
     // Interface for Comment Repository
     public interface ICommentRepository
     {
-        public Task<List<Comment>> GetComments();
+        public Task<List<Comment>> GetComments(CommentQueryObject queryObject);
         public Task<Comment?> GetCommentID(int id);
         public Task<Comment> CreateComment(Comment comment);
         public Task<Comment?> UpdateComment(int id, Comment comment);
