@@ -1,4 +1,4 @@
-# API for Portfolio Management
+# API for Stock Management
 
 ## Overview
 This project is a .NET Core Web API designed to manage user portfolios, including stocks and comments. The API provides endpoints for user authentication, portfolio management, and stock information retrieval.
