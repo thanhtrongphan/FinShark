@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Learning\\NetCore\\ProjectLearn\\api\\api.csproj": {}
+    "D:\\Learning\\Code\\NetCore\\ProjectLearn\\api\\api.csproj": {}
   },
   "projects": {
-    "D:\\Learning\\NetCore\\ProjectLearn\\api\\api.csproj": {
+    "D:\\Learning\\Code\\NetCore\\ProjectLearn\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Learning\\NetCore\\ProjectLearn\\api\\api.csproj",
+        "projectUniqueName": "D:\\Learning\\Code\\NetCore\\ProjectLearn\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "D:\\Learning\\NetCore\\ProjectLearn\\api\\api.csproj",
+        "projectPath": "D:\\Learning\\Code\\NetCore\\ProjectLearn\\api\\api.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Learning\\NetCore\\ProjectLearn\\api\\obj\\",
+        "outputPath": "D:\\Learning\\Code\\NetCore\\ProjectLearn\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"

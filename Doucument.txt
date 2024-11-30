@@ -1,3 +1,34 @@
+**Nudget**
+1. Microsoft.AspNetCore.Authentication.JwtBearer (8.0.0):
+
+This package provides middleware to enable JWT (JSON Web Token) bearer authentication in ASP.NET Core applications. It allows you to secure your APIs using JWT tokens.
+2. Microsoft.AspNetCore.Identity.EntityFrameworkCore (8.0.0):
+
+This package integrates ASP.NET Core Identity with Entity Framework Core. It provides the necessary services and data models to manage user authentication, authorization, and user data storage using Entity Framework Core.
+3. Microsoft.AspNetCore.Mvc.NewtonsoftJson (8.0.11):
+
+This package enables the use of Newtonsoft.Json (Json.NET) for JSON serialization and deserialization in ASP.NET Core MVC applications. It is useful when you need advanced JSON features not available in the built-in System.Text.Json.
+4. Microsoft.AspNetCore.OpenApi (8.0.10):
+
+This package provides support for OpenAPI (formerly known as Swagger) in ASP.NET Core applications. It allows you to generate OpenAPI documentation for your APIs, making it easier to understand and consume them.
+5. Microsoft.EntityFrameworkCore.Design (8.0.10):
+
+This package contains design-time components for Entity Framework Core. It is used for migrations, scaffolding, and other design-time tasks. It is not required at runtime.
+6. Microsoft.EntityFrameworkCore.SqlServer (8.0.10):
+
+This package provides the SQL Server database provider for Entity Framework Core. It allows you to use SQL Server as the database for your Entity Framework Core models.
+7. Microsoft.EntityFrameworkCore.Tools (8.0.10):
+
+This package contains tools for Entity Framework Core, including the dotnet ef command-line tool. It is used for migrations, scaffolding, and other development tasks.
+8. Microsoft.Extensions.Identity.Core (8.0.0):
+
+This package provides the core identity services for ASP.NET Core. It includes the necessary interfaces and classes to manage user authentication and authorization.
+9. Newtonsoft.Json (13.0.3):
+
+This package is the popular Json.NET library for JSON serialization and deserialization. It is widely used for its advanced features and flexibility in handling JSON data.
+10. Swashbuckle.AspNetCore:
+
+This package integrates Swashbuckle with ASP.NET Core to generate Swagger-compliant metadata for your API. It is used to create interactive API documentation and test endpoints directly from the browser.
 
 **Code:**
 1. `dotnet watch run` : runs the project.

@@ -19,6 +19,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // add authentication to block access to the api
+// use Microsoft.AspNetCore.OpenApi 
+// Swashbuckle.AspNetCore:
 builder.Services.AddSwaggerGen(option =>
 {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
@@ -48,14 +50,17 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 // add database in appsettings.json
+// Microsoft.EntityFrameworkCore.SqlServer (8.0.10):
 builder.Services.AddDbContext<ApplicationDBContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 //setting up the json serializer, to ignore the loop reference
+// Microsoft.AspNetCore.Mvc.NewtonsoftJson (8.0.11)
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
 // add password policy
+// Microsoft.AspNetCore.Identity.EntityFrameworkCore
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = true;
@@ -66,6 +71,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<ApplicationDBContext>();
 // add authentication to the api
+// Microsoft.AspNetCore.Authentication.JwtBearer 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme =
